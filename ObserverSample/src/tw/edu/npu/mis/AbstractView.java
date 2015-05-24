@@ -44,6 +44,6 @@ public abstract class AbstractView implements showable, Observer{
     
     
     public void update() {
-        
+        invalidate();
     }
 }
