@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Samael Wang <freesamael@gmail.com>
+ * Copyright (c) 2015, STP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -26,30 +26,24 @@
 package tw.edu.npu.mis;
 
 /**
- * The domain model.
  *
- * @author Samael Wang <freesamael@gmail.com>
+ * @author STP
  */
-public class Model extends Subject{
-
-    private String mData;
-
-    /**
-     * Get model content.
-     *
-     * @return {@link String}
-     */
-    public String getData() {
-        return mData;
+public abstract class AbstractView implements showable, Observer{
+    public  String mName;
+    public  Window mWindow;
+    public  Model mModel;
+    
+    public AbstractView(String name, Window window, Model model) {
+        mName = name;
+        mWindow = window;
+        mModel = model;
+        mModel.attach(this);
     }
-
-    /**
-     * Update model.
-     *
-     * @param data A {@link String} data.
-     */
-    public void setData(String data) {
-        mData = data;
+    protected abstract void invalidate();
+    
+    
+    public void update() {
+        
     }
-
 }

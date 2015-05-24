@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Samael Wang <freesamael@gmail.com>
+ * Copyright (c) 2015, STP
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -25,31 +25,25 @@
  */
 package tw.edu.npu.mis;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * The domain model.
  *
- * @author Samael Wang <freesamael@gmail.com>
+ * @author STP
  */
-public class Model extends Subject{
-
-    private String mData;
-
-    /**
-     * Get model content.
-     *
-     * @return {@link String}
-     */
-    public String getData() {
-        return mData;
+public class Subject {
+    public List<Observer> ObserverList = new ArrayList<Observer>();
+    
+    public void attach(Observer o) {
+        ObserverList.add(o);
     }
-
-    /**
-     * Update model.
-     *
-     * @param data A {@link String} data.
-     */
-    public void setData(String data) {
-        mData = data;
+    public void detach(Observer o) {
+        ObserverList.remove(o);
     }
-
+    public void notifyObserver() {
+        for(Observer o: ObserverList) {
+            o.update();
+        }
+    }
 }
