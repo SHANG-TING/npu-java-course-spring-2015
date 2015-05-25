@@ -35,11 +35,9 @@ public class AlternativeView extends AbstractView{
         super(name, window, model);
     }
 
-    @Override
-    protected void invalidate() {
-         mWindow.schduleRedraw(this);
-    }
-
+    /**
+     * Show the content of the model on the console.
+     */
     @Override
     public void onDraw() {
         System.out.println("View (" + mName + "): " + new StringBuilder(mModel.getData()).reverse()); 

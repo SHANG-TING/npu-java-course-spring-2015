@@ -29,20 +29,27 @@ package tw.edu.npu.mis;
  *
  * @author STP
  */
-public abstract class AbstractView implements showable, Observer{
+public abstract class AbstractView implements Showable, Observer{
     public  String mName;
     public  Window mWindow;
     public  Model mModel;
+    /**
+     * Invalidate the view, which indicates it needs to be redrawn later.
+     */
+
     
-    public AbstractView(String name, Window window, Model model) {
+    AbstractView(String name, Window window, Model model) {
         mName = name;
         mWindow = window;
         mModel = model;
         mModel.attach(this);
     }
-    protected abstract void invalidate();
     
+    protected void invalidate() {
+        mWindow.schduleRedraw(this);
+    }
     
+    @Override
     public void update() {
         invalidate();
     }

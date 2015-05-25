@@ -32,22 +32,14 @@ package tw.edu.npu.mis;
  */
 public class View extends AbstractView {
 
-
-
     public View(String name, Window window, Model model) {
         super(name, window, model);
     }
 
     /**
-     * Invalidate the view, which indicates it needs to be redrawn later.
-     */
-    protected void invalidate() {
-        mWindow.schduleRedraw(this);
-    }
-
-    /**
      * Show the content of the model on the console.
      */
+    @Override
     public void onDraw() {
         System.out.println("View (" + mName + "): " + mModel.getData());
     }

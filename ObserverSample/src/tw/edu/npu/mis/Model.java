@@ -49,12 +49,8 @@ public class Model extends Subject{
      * @param data A {@link String} data.
      */
     public void setData(String data) {
-        if(mData!=data) {
-            mData = data;
-            notifyObserver();
-        }
-        else
-            mData = data;
+        mData = data;
+        this.notifyObserver();
     }
 
 }

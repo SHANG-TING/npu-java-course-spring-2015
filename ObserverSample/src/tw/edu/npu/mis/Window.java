@@ -49,12 +49,12 @@ public class Window {
         mInvalidViews = new ArrayList<>(views);
 
         // Simulate how an event loop works.
-        while (true) {
+        while (true) {         
             mController.readInput();
             for (AbstractView v : mInvalidViews) {
                 v.onDraw();
             }
-            //mInvalidViews.clear();
+            mInvalidViews.clear();
         }
     }
 
@@ -64,6 +64,7 @@ public class Window {
      * @param v View to redraw.
      */
     public void schduleRedraw(AbstractView v) {
-        mInvalidViews.add(v);
+        if(!mInvalidViews.contains(v))
+            mInvalidViews.add(v);
     }
 }
