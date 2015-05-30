@@ -47,6 +47,7 @@ public class Model extends Subject{
      * Update model.
      *
      * @param data A {@link String} data.
+     * this.notifyObserver() 通知在自己(Model)有註冊的所有View
      */
     public void setData(String data) {
         mData = data;

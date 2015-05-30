@@ -35,12 +35,25 @@ import java.util.List;
 public class Subject {
     public List<Observer> ObserverList = new ArrayList<Observer>();
     
+    /**
+     * @param o 
+     * 新增要註冊的View
+     */
     public void attach(Observer o) {
         ObserverList.add(o);
     }
+    
+    /**
+     * @param o 
+     * 移除沒有要註冊的View
+     */
     public void detach(Observer o) {
         ObserverList.remove(o);
     }
+    
+    /**
+     * Model一有變動會呼叫所有有註冊的View
+     */
     public void notifyObserver() {
         for(Observer o: ObserverList) {
             o.update();

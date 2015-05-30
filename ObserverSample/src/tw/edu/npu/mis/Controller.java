@@ -34,6 +34,10 @@ import java.util.Scanner;
  */
 public class Controller {
 
+    /**
+     * 老師你說不能變動Controller
+     * 我不敢把這final宣告的mModel名稱改大寫
+     */
     private final Model mModel;
 
     public Controller(Model model) {

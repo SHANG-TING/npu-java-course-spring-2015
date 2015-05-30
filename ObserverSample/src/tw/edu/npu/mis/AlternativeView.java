@@ -31,6 +31,14 @@ package tw.edu.npu.mis;
  */
 public class AlternativeView extends AbstractView{
 
+    /**
+     * 
+     * @param name
+     * @param window
+     * @param model
+     * 繼承AbstracView下來的View
+     * 引用他的建構式
+     */
     public AlternativeView(String name, Window window, Model model) {
         super(name, window, model);
     }

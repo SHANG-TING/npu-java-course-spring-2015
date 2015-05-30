@@ -34,21 +34,29 @@ public abstract class AbstractView implements Showable, Observer{
     public  Window mWindow;
     public  Model mModel;
     /**
-     * Invalidate the view, which indicates it needs to be redrawn later.
+     * 
+     * @param name 
+     * @param window 
+     * @param model 
+     * view的抽象類別 有上列參數的建構式
      */
-
-    
     AbstractView(String name, Window window, Model model) {
         mName = name;
         mWindow = window;
         mModel = model;
         mModel.attach(this);
     }
+    /**
+     *把自己(View)加入Window類別的View陣列裡 
+     */
     
     protected void invalidate() {
         mWindow.schduleRedraw(this);
     }
     
+    /**
+     * Model資料有變動的話, 就呼叫我(View)
+     */
     @Override
     public void update() {
         invalidate();

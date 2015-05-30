@@ -30,5 +30,8 @@ package tw.edu.npu.mis;
  * @author STP
  */
 public interface Observer {
+    /**
+     * Model一有變動 就會呼叫
+     */
     void update();
 }

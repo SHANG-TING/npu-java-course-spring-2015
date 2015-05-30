@@ -43,6 +43,7 @@ public class Window {
      *
      * @param c The controller.
      * @param views The views to draw on the first loop.
+     * 主要就是不停地Listen我們使用者是否有輸入內容
      */
     public void startEventLoop(Controller c, List<AbstractView> views) {
         mController = c;

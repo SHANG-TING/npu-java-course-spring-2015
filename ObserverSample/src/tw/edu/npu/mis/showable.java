@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, STP
+ * Copyright (c) 2015, User
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -27,8 +27,9 @@ package tw.edu.npu.mis;
 
 /**
  *
- * @author STP
+ * @author User
+ * 顯示畫面的Interface
  */
-public interface showable {
+public interface Showable {
     void onDraw();
 }
