@@ -125,11 +125,11 @@ public class Calculator extends java.util.Observable{
                 }
                 break;
             case SQRT:        // √
-                if(Sort == "Front" && !Digit_F.isEmpty()) {
+                if(Sort == "Front" && !Digit_F.isEmpty() && Digit_F.indexOf("-") < 0) {
                     if(Digit_F.indexOf(".") > 0) Digit_F = "" + (Math.sqrt(Double.valueOf(Digit_F)));
                     else Digit_F = "" + (Math.sqrt(Integer.valueOf(Digit_F)));
                 }
-                else if(Sort == "Later" && !Digit_L.isEmpty()) {
+                else if(Sort == "Later" && !Digit_L.isEmpty() && Digit_L.indexOf("-") < 0) {
                     if(Digit_L.indexOf(".") > 0) Digit_L = "" + (Math.sqrt(Double.valueOf(Digit_L)));
                     else Digit_L = "" + (Math.sqrt(Integer.valueOf(Digit_L)));
                 }
@@ -149,7 +149,28 @@ public class Calculator extends java.util.Observable{
                 Memorize = "";
                 Memorize_recall = false;
                 break;
-            
+            case MEM_PLUS:
+                if(Memorize_recall) {
+                    if(Sort == "Front"&& !Digit_F.isEmpty()) {
+                        Memorize = "" + (Double.valueOf(Memorize) + Double.valueOf(Digit_F));
+                    }
+                    else if(Sort == "Later") {
+                        Memorize = "" + (Double.valueOf(Memorize) + Double.valueOf(Digit_L));
+                    }
+                }
+                if(Memorize.indexOf(".0") == Memorize.length() - 2) Memorize = Memorize.replace(".0", "");
+                break;
+            case MEM_MINUS:
+                if(Memorize_recall) {
+                    if(Sort == "Front"&& !Digit_F.isEmpty()) {
+                        Memorize = "" + (Double.valueOf(Memorize) - Double.valueOf(Digit_F));
+                    }
+                    else if(Sort == "Later") {
+                        Memorize = "" + (Double.valueOf(Memorize) - Double.valueOf(Digit_L));
+                    }
+                }
+                if(Memorize.indexOf(".0") == Memorize.length() - 2) Memorize = Memorize.replace(".0", "");
+                break;            
         }
         this.setChanged();
         this.notifyObservers();

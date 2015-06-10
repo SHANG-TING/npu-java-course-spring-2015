@@ -68,6 +68,12 @@ public class Controller {
                 case "MC":
                     mModel.performOperation(Calculator.Operator.MEM_CLEAR);
                     break;
+                case "M+":
+                    mModel.performOperation(Calculator.Operator.MEM_PLUS);
+                    break;
+                case "M-":
+                    mModel.performOperation(Calculator.Operator.MEM_MINUS);
+                    break;
             }
         }
     }

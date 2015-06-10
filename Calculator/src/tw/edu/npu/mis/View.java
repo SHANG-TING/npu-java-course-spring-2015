@@ -22,6 +22,7 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         this.mModel = model;
         this.mController = controller;
         mModel.addObserver(this);
+        
         initComponents();
     }
 
@@ -58,12 +59,12 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         jButton21 = new javax.swing.JButton();
         jButton22 = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jButton24 = new javax.swing.JButton();
         jButton26 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
         jButton27 = new javax.swing.JButton();
         jButton28 = new javax.swing.JButton();
+        jTextField2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -280,8 +281,6 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         });
         getContentPane().add(jButton23);
         jButton23.setBounds(180, 90, 60, 30);
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 20, 30, 0);
 
         jButton24.setText("MS");
         jButton24.setPreferredSize(new java.awt.Dimension(50, 25));
@@ -303,10 +302,20 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         jButton26.setBounds(0, 60, 60, 30);
 
         jButton25.setText("M+");
+        jButton25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton25ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton25);
         jButton25.setBounds(180, 60, 60, 30);
 
         jButton27.setText("M-");
+        jButton27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton27ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton27);
         jButton27.setBounds(120, 60, 60, 30);
 
@@ -318,6 +327,11 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         });
         getContentPane().add(jButton28);
         jButton28.setBounds(60, 60, 60, 30);
+
+        jTextField2.setFont(new java.awt.Font("新細明體", 0, 18)); // NOI18N
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(jTextField2);
+        jTextField2.setBounds(9, 10, 40, 30);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -447,6 +461,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
         this.mController.Listener(jButton26.getText());
     }//GEN-LAST:event_jButton26ActionPerformed
 
+    private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        this.mController.Listener(jButton27.getText());
+    }//GEN-LAST:event_jButton27ActionPerformed
+
+    private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        this.mController.Listener(jButton25.getText());
+    }//GEN-LAST:event_jButton25ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
@@ -476,12 +498,14 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
     @Override
     public void update(Observable o, Object arg) {
         jTextField1.setText(mModel.getDisplay());
+        if(mModel.Memorize_recall) jTextField2.setText("M");
+        else jTextField2.setText("");
     }
 }
