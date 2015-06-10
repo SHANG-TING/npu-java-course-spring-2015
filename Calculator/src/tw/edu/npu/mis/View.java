@@ -502,6 +502,13 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * 由Model notifyObservers() 通知已註冊的View 的update()方法
+     * 將數字顯示在TextField1上
+     * 判斷是否有記憶數字 顯示M
+     * @param o Model
+     * @param arg 
+     */
     @Override
     public void update(Observable o, Object arg) {
         jTextField1.setText(mModel.getDisplay());

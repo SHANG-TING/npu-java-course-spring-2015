@@ -9,7 +9,14 @@ package tw.edu.npu.mis;
  * The model class of the calculator application.
  */
 public class Calculator extends java.util.Observable{
-    
+    /**
+     * @param Digit_F 被加數
+     * @param Digit_L 加數
+     * @param Sort 標記現在是被加數 還是 加數
+     * @param Symbol 暫存運算符號現在是多少 主要用來做出累加效果
+     * @param Percent_Digit 暫存百分比的數字 讓百分比可以不停地累加
+     * @param Memorize 用來暫存 使用者按MS 想要記憶設定的數字
+     */
     String Digit_F = "", Digit_L = "", Sort = "Front", Symbol = "", Percent_Digit = "", Memorize = "";
     boolean plus_minus = false, Memorize_recall = false;
     /**
@@ -34,7 +41,11 @@ public class Calculator extends java.util.Observable{
         MEM_MINUS,   // M-
         MEM_RECALL   // MR
     }
-    
+    /**
+     * @param digit 每次使用者按下0~9的數字鍵 
+     * 觸發數字是否要加到被加數還是加數
+     * 通知View
+     */
     public void appendDigit(int digit) {
         if(Sort == "Front") Digit_F += digit;
         else if(Sort == "Later") Digit_L += digit;
@@ -43,6 +54,9 @@ public class Calculator extends java.util.Observable{
         this.notifyObservers();
     }
     
+    /**
+     * 使用者按小數點的按鈕，新增小數點
+     */
     public void appendDot() {
         if(Sort == "Front") {
             if(Digit_F.indexOf(".") < 0) Digit_F = Digit_F + ".";
@@ -56,7 +70,10 @@ public class Calculator extends java.util.Observable{
         this.setChanged();
         this.notifyObservers();
     }
-    
+    /**
+     * 所有的邏輯運算
+     * @param operator 運算符號
+     */
     public void performOperation(Operator operator) {
         switch(operator) {
             case CLEAR:
@@ -103,12 +120,11 @@ public class Calculator extends java.util.Observable{
                 Percent_Digit = Digit_F;
                 break;
             case PLUS_MINUS:               
-                if(Sort == "Front") {
-                    System.out.println(Digit_F.indexOf("-"));
+                if(Sort == "Front" && Digit_F != "") {
                     if(Digit_F.indexOf("-") == -1) Digit_F = "-" + Digit_F;
                     else if(Digit_F.indexOf("-") == 0) Digit_F = Digit_F.replace("-", "");                    
                 }
-                else if(Sort == "Later") {
+                else if(Sort == "Later" && Digit_L != "") {
                      if(Digit_L.indexOf("-") < 0) Digit_L = "-" + Digit_L;
                      else if(Digit_L.indexOf("-") >= 0) Digit_L =Digit_L.replace("-", "");
                 }              
@@ -121,7 +137,6 @@ public class Calculator extends java.util.Observable{
                 if(Symbol != "") {
                     Digit_L = "" + Double.valueOf(Digit_F) * Double.valueOf(Percent_Digit) / 100.0;
                     Percent_Digit = Digit_L;
-                    System.out.println(Digit_L);
                 }
                 break;
             case SQRT:        // √
@@ -151,10 +166,10 @@ public class Calculator extends java.util.Observable{
                 break;
             case MEM_PLUS:
                 if(Memorize_recall) {
-                    if(Sort == "Front"&& !Digit_F.isEmpty()) {
+                    if(Sort == "Front" && !Digit_F.isEmpty()) {
                         Memorize = "" + (Double.valueOf(Memorize) + Double.valueOf(Digit_F));
                     }
-                    else if(Sort == "Later") {
+                    else if(Sort == "Later" && !Digit_L.isEmpty()) {
                         Memorize = "" + (Double.valueOf(Memorize) + Double.valueOf(Digit_L));
                     }
                 }
@@ -162,10 +177,10 @@ public class Calculator extends java.util.Observable{
                 break;
             case MEM_MINUS:
                 if(Memorize_recall) {
-                    if(Sort == "Front"&& !Digit_F.isEmpty()) {
+                    if(Sort == "Front" && !Digit_F.isEmpty()) {
                         Memorize = "" + (Double.valueOf(Memorize) - Double.valueOf(Digit_F));
                     }
-                    else if(Sort == "Later") {
+                    else if(Sort == "Later" && !Digit_F.isEmpty()) {
                         Memorize = "" + (Double.valueOf(Memorize) - Double.valueOf(Digit_L));
                     }
                 }
@@ -175,13 +190,19 @@ public class Calculator extends java.util.Observable{
         this.setChanged();
         this.notifyObservers();
     }
-    
+    /**
+     * 
+     * @return 顯示現在運算出或正在輸入的數字 
+     */
     public String getDisplay() {
         if(Sort == "Front") return Digit_F;
         else if(Sort == "Later") return Digit_L;
         return null;
     }
     
+    /**
+     * 運算的副程式
+     */
     public void equals() {
         switch(Symbol) {
                     case "+":
@@ -194,15 +215,17 @@ public class Calculator extends java.util.Observable{
                         Digit_F = "" + (Double.valueOf(Digit_F) * Double.valueOf(Digit_L));
                         break;
                     case "/":
-                        //if(Digit_F.indexOf(".") > 0 || Digit_L.indexOf(".") > 0)
-                            Digit_F = "" + (Double.valueOf(Digit_F) / Double.valueOf(Digit_L));
-                        //else Digit_F = "" + (Integer.valueOf(Digit_F) / Integer.valueOf(Digit_L));                     
+                        Digit_F = "" + (Double.valueOf(Digit_F) / Double.valueOf(Digit_L));                 
                         break;
                     }
         if(Digit_F.indexOf(".0") == Digit_F.length() - 2) Digit_F = Digit_F.replace(".0", "");
         Digit_L = "";
     }
     
+    /**
+     * 因為這裡預設 main
+     * 所以在這裡實作所有類別以及方法
+     */
     public static void main(String[] args) {
         Calculator model = new Calculator();
         Controller controller = new Controller(model);

@@ -15,7 +15,11 @@ public class Controller {
     public Controller(Calculator model) {
         mModel = model;
     }
-    
+    /**
+     * 聽View的button是否有觸發click事件
+     * 並且判斷 在回傳給Model
+     * @param s 暫存button.getText()   
+     */
     public void Listener(String s) {
         if(s == "0" || s == "1" || s == "2" || s == "3" || s == "4" || s == "5"|| s == "6" || s == "7" || s == "8" || s == "9") {
             mModel.appendDigit(Integer.valueOf(s));
