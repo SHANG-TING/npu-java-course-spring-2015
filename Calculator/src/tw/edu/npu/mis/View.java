@@ -450,22 +450,27 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
+        //MS
         this.mController.Listener(jButton24.getText());
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
+        //MR
         this.mController.Listener(jButton28.getText());
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        //MC
         this.mController.Listener(jButton26.getText());
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
+        //M-
         this.mController.Listener(jButton27.getText());
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        //M+
         this.mController.Listener(jButton25.getText());
     }//GEN-LAST:event_jButton25ActionPerformed
 
@@ -505,9 +510,9 @@ public class View extends javax.swing.JFrame implements java.util.Observer{
     /**
      * 由Model notifyObservers() 通知已註冊的View 的update()方法
      * 將數字顯示在TextField1上
-     * 判斷是否有記憶數字 顯示M
+     * 判斷是否有記憶數字，如果有就在jTextField2顯示M，沒有則顯示空值
      * @param o Model
-     * @param arg 
+     * @param arg notifyObservers(s) 是可以加入參數傳值，所以能用arg取值 
      */
     @Override
     public void update(Observable o, Object arg) {
